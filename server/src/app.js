@@ -4,7 +4,7 @@ import multer from "multer";
 import path from "path";
 import cors from "cors";
 
-import Routes from "./routes/routes";
+import Routes from "./routes/image.routes";
 
 // Initializations
 const app = express();
