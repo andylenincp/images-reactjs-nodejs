@@ -47,7 +47,7 @@ function App() {
     <Fragment>
       <nav className="navbar navbar-dark bg-dark">
         <div className="container">
-          <a href="#!" className="navbar-brand">Image App</a>
+          <a href="#!" className="navbar-brand">Images App</a>
         </div>
       </nav>
 
@@ -64,9 +64,9 @@ function App() {
         </div>
       </div>
 
-      <div className="container mt-3" style={{ display: "flex", flexWrap: "wrap" }}>
+      <div className="container py-4 mt-3 text-center" style={{ display: "flex", flexWrap: "wrap"}}>
         {imageList.map(images => (
-          <div key={images.id} className="card m-2">
+          <div key={images.id} className="card m-2 mx-auto">
             <img className="card-img-top" src={"http://localhost:5000/" + images.filename} alt="..." style={{ height: "300px", width: "200px" }} />
           </div>
         ))}
