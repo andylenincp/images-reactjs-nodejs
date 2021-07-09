@@ -11,4 +11,6 @@ router.post("/images/post", imagesController.createImage);
 
 router.get("/images/get", imagesController.getImages);
 
+router.delete("/images/delete/:id", imagesController.deleteImage);
+
 export default router;
