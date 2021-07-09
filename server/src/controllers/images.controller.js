@@ -6,10 +6,19 @@ export const createImage = async (req, res) => {
         await Image.create({
             mimetype,
             originalname,
-            filename: "../images/" + filename
+            filename
         })
         res.status(201).json({ message: "Image saved" });
     } catch (error) {
         res.status(400).send({ message: "An error has occurred" });
     }
 };
+
+export const getImages = async (req, res) => {
+    try {
+        const images = await Image.findAll();
+        res.status(200).json(images);
+    } catch (error) {
+        res.status(400).send({ message: "An error has occurred" });
+    }
+}

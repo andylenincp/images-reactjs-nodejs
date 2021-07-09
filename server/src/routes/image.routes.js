@@ -9,4 +9,6 @@ router.get("/", (req, res) => {
 
 router.post("/images/post", imagesController.createImage);
 
+router.get("/images/get", imagesController.getImages);
+
 export default router;

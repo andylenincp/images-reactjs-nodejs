@@ -30,4 +30,7 @@ app.use(cors());
 // Routes
 app.use(Routes);
 
+// Static files
+app.use(express.static(path.join(__dirname, "images")));
+
 export default app;

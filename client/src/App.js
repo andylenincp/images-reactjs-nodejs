@@ -1,8 +1,20 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 
 function App() {
 
   const [file, setFile] = useState(null)
+  const [imageList, setImageList] = useState([])
+  const [listUpdated, setListUpdated] = useState(false)
+
+  useEffect(() => {
+    fetch("http://localhost:5000/images/get")
+      .then(res => res.json())
+      .then(res => setImageList(res))
+      .catch(err => {
+        console.error(err)
+      })
+      setListUpdated(false)
+  }, [listUpdated])
 
   const selectedHandler = e => {
     setFile(e.target.files[0])
@@ -19,11 +31,14 @@ function App() {
       method: "POST",
       body: formdata
     })
-    .then(res => res.text())
-    .then(res => console.log(res))
-    .catch(err => {
-      console.error(err)
-    })
+      .then(res => res.text())
+      .then(res => {
+        console.log(res)
+        setListUpdated(true)
+      })
+      .catch(err => {
+        console.error(err)
+      })
     document.getElementById("fileinput").value = null
     setFile(null)
   }
@@ -47,6 +62,14 @@ function App() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="container mt-3" style={{ display: "flex", flexWrap: "wrap" }}>
+        {imageList.map(images => (
+          <div key={images.id} className="card m-2">
+            <img className="card-img-top" src={"http://localhost:5000/" + images.filename} alt="..." style={{ height: "300px", width: "200px" }} />
+          </div>
+        ))}
       </div>
     </Fragment>
   );
